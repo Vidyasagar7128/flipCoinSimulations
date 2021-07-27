@@ -11,21 +11,24 @@ then
 else
         TAIL=$(($TAIL+1))
 fi
-        if (( ($HEAD == 21) || ($TAIL == 21) ))
+        if (( ($HEAD == $TAIL) ))
         then
-                break
+        ran=$((RANDOM%2))
+        if (( $ran == 0 ))
+then
+        HEAD=$(($HEAD+2))
+else
+        TAIL=$(($TAIL+2))
+fi
+        echo "Breaked"
+        break
         fi
 done
-        echo "HEAD :" $HEAD "Time"
-        echo "TAIL :" $TAIL "Time"
-
-        if (( ($HEAD == 21) ))
+        echo "HEAD :"$HEAD
+        echo "TAIL :"$TAIL
+        if (( $HEAD > $TAIL ))
 then
-        lead=$(($HEAD-$TAIL))
-        echo "Lead is :"$lead
-        echo "Winner is HEAD :" $HEAD "Time"
+echo "HEAD is Win after Tie :" $HEAD
 else
-        lead=$(($TAIL-$HEAD))
-        echo "Lead :"$lead
-        echo "Winner is TAIL :" $TAIL "Time"
+echo "TAIL is Win after Tie :" $TAIL
 fi
