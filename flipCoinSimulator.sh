@@ -2,11 +2,15 @@
 
 HEAD=0
 TAIL=0
-random=$((RANDOM%2))
-if (( $random == 0 ))
+for ((i=1; i<=15; i++))
+do
+        random1=$((RANDOM%2))
+        if (( $random1 == 0 ))
 then
-        echo "HEAD"
+        HEAD=$(($HEAD+1))
 else
-        echo "TAIL"
+        TAIL=$(($TAIL+1))
 fi
-echo
+done
+echo "HEAD :" $HEAD "Time Won"
+echo "TAIL :" $TAIL "Time Won"
