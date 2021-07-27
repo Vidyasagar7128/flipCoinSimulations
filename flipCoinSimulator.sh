@@ -2,7 +2,7 @@
 
 HEAD=0
 TAIL=0
-for ((i=1; i<=15; i++))
+while true
 do
         random1=$((RANDOM%2))
         if (( $random1 == 0 ))
@@ -11,6 +11,21 @@ then
 else
         TAIL=$(($TAIL+1))
 fi
+        if (( ($HEAD == 21) || ($TAIL == 21) ))
+        then
+                break
+        fi
 done
-echo "HEAD :" $HEAD "Time Won"
-echo "TAIL :" $TAIL "Time Won"
+        echo "HEAD :" $HEAD "Time"
+        echo "TAIL :" $TAIL "Time"
+
+        if (( ($HEAD == 21) ))
+then
+        lead=$(($HEAD-$TAIL))
+        echo "Lead is :"$lead
+        echo "Winner is HEAD :" $HEAD "Time"
+else
+        lead=$(($TAIL-$HEAD))
+        echo "Lead :"$lead
+        echo "Winner is TAIL :" $TAIL "Time"
+fi
